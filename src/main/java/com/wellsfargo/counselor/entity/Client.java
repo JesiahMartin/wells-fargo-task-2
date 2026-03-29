@@ -1,16 +1,16 @@
-package com.wellsfargo.counselor.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Relationship;
 
 @Entity
-public class Advisor {
+public class Client{
 
     @Id
     @GeneratedValue()
-    private long advisorId;
+    private long clientID;
 
     @Column(nullable = false)
     private String firstName;
@@ -27,29 +27,30 @@ public class Advisor {
     @Column(nullable = false)
     private String email;
 
-    protected Advisor() {}
-
-    @OneToMany(mappedby="Advisor")
-    private List<Client> clients;
-
-    @OneToMany(mappedBy="Advisor")
+    @OneToMany(mappedBy="client")
     private List<Portfolio> portfolios;
 
-    @oneToMany(mappedBy="Securities")
+    @OneToMany(mappedBy="client")
     private List<Securities> securities;
 
-    public Advisor(String firstName, String lastName, String address, String phone, String email) {
+    @OneToOne(mappedBy="client")
+    private Advisor advisor;
+
+
+    protected Client(){};
+    public Client(string firstName, string lastName,string address, string email, string phone){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
-        this.phone = phone;
         this.email = email;
-    }
+        this.phone = phone;
+}
 
-    public Long getAdvisorId() {
-        return advisorId;
-    }
 
+
+    public getPortfolioID(){
+        return portfolioID;
+    }
+    
     public String getFirstName() {
         return firstName;
     }
@@ -89,4 +90,6 @@ public class Advisor {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }

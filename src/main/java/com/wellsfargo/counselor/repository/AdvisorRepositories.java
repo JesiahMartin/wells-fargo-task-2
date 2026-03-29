@@ -1,0 +1,7 @@
+package com.wellsfargo.counselor.repository;
+
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface ClientRepository extends CrudRepository<Advisor, Long> {
+}
